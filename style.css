@@ -1,0 +1,310 @@
+/* normalize */
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 4. Add accessible line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* normalize end */
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*::selection {
+  color: black;
+  background-color: #fac000;
+}
+
+#app {
+  padding: 0 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  gap: 2rem;
+
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+main {
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+  gap: 2rem;
+}
+
+h3 {
+  font-weight: 500;
+}
+h1 {
+  line-height: 1.1;
+}
+
+h3::after {
+  display: inline-block;
+  animation: ellipsis steps(1, end) 2.5s infinite;
+  content: "";
+  color: #fac000;
+}
+
+@keyframes ellipsis {
+  0% {
+    content: "";
+  }
+  25% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  75% {
+    content: "...";
+  }
+  100% {
+    content: "";
+  }
+}
+
+aside {
+  flex: 1;
+  text-align: center;
+}
+
+.gr {
+  position: relative;
+  display: inline-block;
+  padding: 0 0.25rem;
+  color: #fac000;
+}
+
+.gr::before {
+  content: " ";
+  position: absolute;
+  inset: 0;
+  transform: skew(10);
+  height: 80%;
+  background-color: #000000;
+  transform: rotate(1.5deg);
+  z-index: -1;
+}
+
+.resume-btn {
+  background-color: #ffc711;
+  border: none;
+  padding: 20px 40px;
+  font-size: medium;
+  color: black;
+  font-weight: bold;
+  width: min-content;
+  text-wrap: nowrap;
+  /* cursor: pointer; */
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.resume-btn:hover {
+  background-color: #fccd33;
+}
+
+/* Social / aside area */
+aside {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* anchor styles inside aside (fixed from SCSS-style nesting) */
+aside a {
+  border: rgba(255, 255, 255, 0.1) 1px dashed;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 8rem;
+  min-width: 5rem;
+  color: rgba(255, 255, 255, 0.87);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+aside a:hover {
+  border-color: #fac00055;
+  border-radius: 5px;
+  color: #fac000;
+  box-shadow: 0 0 20px #fac00005;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  /* bring content inwards a bit on narrower viewports */
+  #app {
+    padding: 0 2rem;
+    gap: 1.5rem;
+    align-items: flex-start;
+    height: auto; /* let the content determine height */
+  }
+
+  main {
+    gap: 1.25rem;
+  }
+
+  .resume-btn {
+    padding: 14px 28px;
+  }
+
+  aside {
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  aside a {
+    width: 7rem;
+    min-width: 4.25rem;
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 4.2vw, 2.6rem);
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 600px) {
+  /* stack main + aside vertically on phones */
+  #app {
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1rem;
+    height: auto;
+  }
+
+  main {
+    order: 1;
+    width: 100%;
+  }
+
+  aside {
+    order: 2;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    align-items: stretch;
+    justify-items: center;
+  }
+
+  aside a {
+    width: 100%;
+    aspect-ratio: auto;
+    padding: 0.75rem 1rem;
+    justify-content: center;
+    text-align: left;
+    flex-direction: row;
+    gap: 0.75rem;
+  }
+
+  aside a i {
+    font-style: normal; /* keeps the emoji aligned */
+    font-size: 1.25rem;
+  }
+
+  .resume-btn {
+    width: 100%;
+    padding: 12px 16px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: clamp(1.4rem, 6vw, 2rem);
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+}
