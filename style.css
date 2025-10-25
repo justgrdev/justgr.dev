@@ -170,24 +170,59 @@ aside {
 }
 
 .resume-btn {
-  background-color: #ffc711;
-  border: none;
-  padding: 20px 40px;
-  font-size: medium;
-  color: black;
-  font-weight: bold;
-  width: min-content;
+  background-color: #fac000;
+  border: 0 solid #e5e7eb;
+  box-sizing: border-box;
+  color: #000000;
+  display: flex;
+  font-size: 1rem;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.75rem;
+  padding: 0.75rem 1.65rem;
   text-wrap: nowrap;
-  /* cursor: pointer; */
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
   text-decoration: none;
-  transition: all 0.3s;
+  width: 100%;
+  max-width: 250px;
+  position: relative;
+  cursor: pointer;
+  transform: rotate(-2deg);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: all 0.2s ease;
 }
 
-.resume-btn:hover {
-  background-color: #fccd33;
+.resume-btn:focus {
+  outline: 0;
 }
 
-/* Social / aside area */
+.resume-btn:after {
+  content: "";
+  position: absolute;
+  border: 1px dashed #000000;
+  bottom: 4px;
+  left: 4px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+  transition: all 0.2s ease;
+}
+
+.resume-btn:hover:after {
+  bottom: 2px;
+  left: 2px;
+}
+
+@media (min-width: 768px) {
+  .resume-btn {
+    padding: 0.75rem 3rem;
+    font-size: 1.25rem;
+  }
+}
+
 aside {
   display: grid;
   grid-template-columns: auto auto;
@@ -197,7 +232,6 @@ aside {
   align-items: center;
 }
 
-/* anchor styles inside aside (fixed from SCSS-style nesting) */
 aside a {
   border: rgba(255, 255, 255, 0.1) 1px dashed;
   aspect-ratio: 1 / 1;
@@ -219,14 +253,16 @@ aside a:hover {
   box-shadow: 0 0 20px #fac00005;
 }
 
-/* Responsive adjustments */
+body {
+  min-height: 100dvh;
+}
+
 @media (max-width: 900px) {
-  /* bring content inwards a bit on narrower viewports */
   #app {
     padding: 0 2rem;
-    gap: 1.5rem;
+    gap: 6.5rem;
     align-items: flex-start;
-    height: auto; /* let the content determine height */
+    height: 100dvh;
   }
 
   main {
@@ -257,12 +293,11 @@ aside a:hover {
 }
 
 @media (max-width: 600px) {
-  /* stack main + aside vertically on phones */
   #app {
     flex-direction: column;
     padding: 1.5rem;
-    gap: 1rem;
-    height: auto;
+    gap: 2.5rem;
+    height: fit-content;
   }
 
   main {
@@ -271,12 +306,14 @@ aside a:hover {
   }
 
   aside {
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
     order: 2;
     width: 100%;
     grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
     align-items: stretch;
     justify-items: center;
+    height: min-content;
   }
 
   aside a {
@@ -286,11 +323,10 @@ aside a:hover {
     justify-content: center;
     text-align: left;
     flex-direction: row;
-    gap: 0.75rem;
   }
 
   aside a i {
-    font-style: normal; /* keeps the emoji aligned */
+    font-style: normal;
     font-size: 1.25rem;
   }
 
