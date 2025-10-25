@@ -257,42 +257,7 @@ body {
   min-height: 100dvh;
 }
 
-@media (max-width: 900px) {
-  #app {
-    padding: 0 2rem;
-    gap: 6.5rem;
-    align-items: flex-start;
-    height: 100dvh;
-  }
-
-  main {
-    gap: 1.25rem;
-  }
-
-  .resume-btn {
-    padding: 14px 28px;
-  }
-
-  aside {
-    gap: 1rem;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  aside a {
-    width: 7rem;
-    min-width: 4.25rem;
-  }
-
-  h1 {
-    font-size: clamp(1.6rem, 4.2vw, 2.6rem);
-  }
-
-  p {
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   #app {
     flex-direction: column;
     padding: 1.5rem;
@@ -306,8 +271,6 @@ body {
   }
 
   aside {
-    border-top: 1px dashed rgba(255, 255, 255, 0.1);
-    padding-top: 15px;
     order: 2;
     width: 100%;
     grid-template-columns: 1fr 1fr;
